@@ -103,6 +103,12 @@ class CalculatorModel
     func negateInput()
     {
         inputValue = -inputValue
+        inputString = String(inputValue)
+        
+        outputValue = convertUnit(input: inputValue)
+        
+        baseUnitString = inputString! + conversion.getSuffix().0
+        convertedUnitString = String(outputValue) + conversion.getSuffix().1
     }
     
     func clearInput()
