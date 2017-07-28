@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		69CB34E61F26DF240028D523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CB34E51F26DF240028D523 /* AppDelegate.swift */; };
-		69CB34E81F26DF240028D523 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CB34E71F26DF240028D523 /* ViewController.swift */; };
 		69CB34EB1F26DF240028D523 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69CB34E91F26DF240028D523 /* Main.storyboard */; };
 		69CB34ED1F26DF240028D523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69CB34EC1F26DF240028D523 /* Assets.xcassets */; };
 		69CB34F01F26DF240028D523 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69CB34EE1F26DF240028D523 /* LaunchScreen.storyboard */; };
+		69CB34F91F2AE4910028D523 /* CalculatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CB34F81F2AE4910028D523 /* CalculatorVC.swift */; };
+		69CB34FB1F2AE49B0028D523 /* CalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CB34FA1F2AE49B0028D523 /* CalculatorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		69CB34E21F26DF240028D523 /* Final4001.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final4001.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CB34E51F26DF240028D523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		69CB34E71F26DF240028D523 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		69CB34EA1F26DF240028D523 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		69CB34EC1F26DF240028D523 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		69CB34EF1F26DF240028D523 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		69CB34F11F26DF240028D523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69CB34F81F2AE4910028D523 /* CalculatorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorVC.swift; sourceTree = "<group>"; };
+		69CB34FA1F2AE49B0028D523 /* CalculatorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,23 @@
 		69CB34E41F26DF240028D523 /* Final4001 */ = {
 			isa = PBXGroup;
 			children = (
-				69CB34E51F26DF240028D523 /* AppDelegate.swift */,
-				69CB34E71F26DF240028D523 /* ViewController.swift */,
+				69CB34F71F26DF670028D523 /* Supporting Files */,
 				69CB34E91F26DF240028D523 /* Main.storyboard */,
-				69CB34EC1F26DF240028D523 /* Assets.xcassets */,
 				69CB34EE1F26DF240028D523 /* LaunchScreen.storyboard */,
-				69CB34F11F26DF240028D523 /* Info.plist */,
+				69CB34F81F2AE4910028D523 /* CalculatorVC.swift */,
+				69CB34FA1F2AE49B0028D523 /* CalculatorModel.swift */,
 			);
 			path = Final4001;
+			sourceTree = "<group>";
+		};
+		69CB34F71F26DF670028D523 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				69CB34EC1F26DF240028D523 /* Assets.xcassets */,
+				69CB34E51F26DF240028D523 /* AppDelegate.swift */,
+				69CB34F11F26DF240028D523 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +148,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69CB34E81F26DF240028D523 /* ViewController.swift in Sources */,
+				69CB34FB1F2AE49B0028D523 /* CalculatorModel.swift in Sources */,
+				69CB34F91F2AE4910028D523 /* CalculatorVC.swift in Sources */,
 				69CB34E61F26DF240028D523 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +316,7 @@
 				69CB34F61F26DF240028D523 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
