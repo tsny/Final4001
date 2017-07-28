@@ -52,7 +52,8 @@ class CalculatorVC: UIViewController
             if(calcModel.inputString?.characters.first == "-")
             {
                 let startIndex = calcModel.inputString?.startIndex
-                calcModel.inputString = calcModel.inputString?.substring(from: startIndex!)
+                let secondIndex = calcModel.inputString?.characters.index(after: startIndex!)
+                calcModel.inputString = calcModel.inputString?.substring(from: secondIndex!)
             }
             else
             {
