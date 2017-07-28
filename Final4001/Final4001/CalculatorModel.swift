@@ -12,15 +12,17 @@ class CalculatorModel
 {
     init()
     {
-        self.currentConversion = .fahrenheitToCelcius
-        self.currentInput = 0.0
+        self.conversion = .fahrenheitToCelcius
+        self.inputValue = 0.0
+        self.outputValue = 0.0
         self.inputHasDecimal = false
         self.isUserTyping = false
         self.inputString = ""
-        self.outputString = ""
+        self.convertedUnitString = ""
+        self.baseUnitString = ""
     }
     
-    enum conversion
+    enum conversionType
     {
         case fahrenheitToCelcius
         case celciusToFahrenheit
@@ -45,23 +47,16 @@ class CalculatorModel
     
     var isUserTyping: Bool
     var inputHasDecimal: Bool
-    var currentConversion: conversion
-    var currentInput: Float
+    var conversion: conversionType
+    var inputValue: Float
+    var outputValue: Float
     var inputString: String?
-    {
-        didSet
-        {
-            if(inputString != "")
-            {
-                outputString = String(convertUnit(input: Float(inputString!)!))
-            }
-        }
-    }
-    var outputString: String?
+    var baseUnitString: String?
+    var convertedUnitString: String?
     
     func convertUnit(input: Float) -> Float
     {
-        switch(currentConversion)
+        switch(conversion)
         {
             case .celciusToFahrenheit:
                 return (input * 1.8) / 32
@@ -76,5 +71,48 @@ class CalculatorModel
                 return input * 1.60934
         }
     }
-   
+    
+    func newInput(input: String)
+    {
+        if(!isUserTyping && (input == "." || input == "0"))
+        {
+            return
+        }
+        
+        if(inputHasDecimal && input == ".")
+        {
+            return
+        }
+        
+        if(input == ".")
+        {
+            inputHasDecimal = true
+        }
+        
+        isUserTyping = true
+        
+        inputString = inputString! + input
+        
+        inputValue = Float(inputString!)!
+        outputValue = convertUnit(input: inputValue)
+        
+        baseUnitString = inputString! + conversion.getSuffix().0
+        convertedUnitString = String(outputValue) + conversion.getSuffix().1
+    }
+    
+    func negateInput()
+    {
+        inputValue = -inputValue
+    }
+    
+    func clearInput()
+    {
+        isUserTyping = false
+        inputHasDecimal = false
+        inputValue = 0.0
+        outputValue = 0.0
+        inputString = ""
+        baseUnitString = ""
+        convertedUnitString = ""
+    }
 }

@@ -17,58 +17,24 @@ class CalculatorVC: UIViewController
     
     var calcModel = CalculatorModel()
     
-    
     @IBAction func touchDigit(_ sender: Any)
     {
         let sender = sender as! UIButton
         
-        if(!calcModel.isUserTyping && (sender.titleLabel?.text == "." || sender.titleLabel?.text == "0"))
-        {
-            return
-        }
-        
-        if(calcModel.inputHasDecimal && sender.titleLabel?.text == ".")
-        {
-            return
-        }
-        
-        if(sender.titleLabel?.text == ".")
-        {
-            calcModel.inputHasDecimal = true
-        }
-        
-        calcModel.isUserTyping = true
-        
-        calcModel.inputString = calcModel.inputString! + (sender.titleLabel?.text)!
-        
-        baseUnit.text = calcModel.inputString! + calcModel.currentConversion.getSuffix().0
-        convertedUnit.text = calcModel.outputString! + calcModel.currentConversion.getSuffix().1
+        calcModel.newInput(input: (sender.titleLabel?.text)!)
+        refreshTextFields()
     }
     
     @IBAction func negateInput(_ sender: Any)
     {
-        if(calcModel.isUserTyping)
-        {
-            if(calcModel.inputString?.characters.first == "-")
-            {
-                let startIndex = calcModel.inputString?.startIndex
-                let secondIndex = calcModel.inputString?.characters.index(after: startIndex!)
-                calcModel.inputString = calcModel.inputString?.substring(from: secondIndex!)
-            }
-            else
-            {
-                calcModel.inputString = "-" + calcModel.inputString!
-            }
-        }
+        calcModel.negateInput()
+        refreshTextFields()
     }
     
     @IBAction func clearInput(_ sender: Any)
     {
-        convertedUnit.text = ""
-        baseUnit.text = ""
-        calcModel.inputString = ""
-        calcModel.isUserTyping = false
-        calcModel.inputHasDecimal = false
+        calcModel.clearInput()
+        refreshTextFields()
     }
     
     @IBAction func changeConversion(_ sender: Any)
@@ -76,30 +42,33 @@ class CalculatorVC: UIViewController
         let alert = UIAlertController(title: "Conversions", message: "Choose conversion", preferredStyle: UIAlertControllerStyle.actionSheet)
         
         alert.addAction(UIAlertAction(title: "Fahrenheit to Celcius", style: UIAlertActionStyle.default, handler: { (alertAction) in
-            self.calcModel.currentConversion = .fahrenheitToCelcius
+            self.calcModel.conversion = .fahrenheitToCelcius
             self.clearInput((Any).self)
-
         }))
         
         alert.addAction(UIAlertAction(title: "Celcius to Fahrenheit", style: UIAlertActionStyle.default, handler: { (alertAction) in
-            self.calcModel.currentConversion = .celciusToFahrenheit
+            self.calcModel.conversion = .celciusToFahrenheit
             self.clearInput((Any).self)
-
         }))
         
         alert.addAction(UIAlertAction(title: "Miles to Kilometers", style: UIAlertActionStyle.default, handler: { (alertAction) in
-            self.calcModel.currentConversion = .milesToKilometers
+            self.calcModel.conversion = .milesToKilometers
             self.clearInput((Any).self)
         }))
         
         alert.addAction(UIAlertAction(title: "Kilometers to Miles", style: UIAlertActionStyle.default, handler: { (alertAction) in
-            self.calcModel.currentConversion = .kilometersToMiles
+            self.calcModel.conversion = .kilometersToMiles
             self.clearInput((Any).self)
-
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel))
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func refreshTextFields()
+    {
+        baseUnit.text = calcModel.baseUnitString
+        convertedUnit.text = calcModel.convertedUnitString
     }
 }
