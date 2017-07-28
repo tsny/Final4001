@@ -45,6 +45,22 @@ class CalculatorVC: UIViewController
         convertedUnit.text = calcModel.outputString! + calcModel.currentConversion.getSuffix().1
     }
     
+    @IBAction func negateInput(_ sender: Any)
+    {
+        if(calcModel.isUserTyping)
+        {
+            if(calcModel.inputString?.characters.first == "-")
+            {
+                let startIndex = calcModel.inputString?.startIndex
+                calcModel.inputString = calcModel.inputString?.substring(from: startIndex!)
+            }
+            else
+            {
+                calcModel.inputString = "-" + calcModel.inputString!
+            }
+        }
+    }
+    
     @IBAction func clearInput(_ sender: Any)
     {
         convertedUnit.text = ""
